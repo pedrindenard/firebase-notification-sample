@@ -9,6 +9,7 @@ import com.pdm.firebase.cloud.message.data.NotificationDatabase
 import com.pdm.firebase.cloud.message.databinding.ActivityNotificationBinding
 import com.pdm.firebase.cloud.message.presenter.adapter.NotificationAdapter
 import com.pdm.firebase.cloud.message.presenter.delegate.NotificationClickListener
+import com.pdm.firebase.cloud.message.presenter.permission.NotificationPermission
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,6 +18,7 @@ import kotlinx.coroutines.withContext
 class NotificationActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityNotificationBinding.inflate(layoutInflater) }
+    private val permission by lazy { NotificationPermission(this) }
     private val database by lazy { NotificationDatabase(this) }
     private val adapter by lazy { NotificationAdapter() }
 
@@ -29,6 +31,8 @@ class NotificationActivity : AppCompatActivity() {
 
         getNotifications()
         getFirebaseToken()
+
+        permission.askNotificationPermission()
     }
 
     private fun setupNotificationAdapter() {
