@@ -1,12 +1,12 @@
 package com.pdm.firebase.cloud.message
 
 import android.app.Application
-import com.google.firebase.FirebaseApp
+import com.pdm.firebase.notification.presenter.NotificationApplication
 
 class NotificationApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        FirebaseApp.initializeApp(applicationContext)
+        NotificationApplication.startFirebaseApplication(this)
     }
 }

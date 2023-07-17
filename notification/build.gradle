@@ -1,14 +1,15 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
+    id 'com.google.gms.google-services'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
-    namespace 'com.pdm.firebase.cloud.message'
+    namespace 'com.pdm.firebase.notification'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.pdm.firebase.cloud.message"
         minSdk 26
         targetSdk 33
         versionCode 1
@@ -50,6 +51,11 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-    implementation project(':notification')
+    implementation platform('com.google.firebase:firebase-bom:31.0.1')
+    implementation 'com.google.firebase:firebase-messaging-ktx'
+
+    implementation "androidx.room:room-ktx:2.5.2"
+    implementation "androidx.room:room-runtime:2.5.2"
+    kapt "androidx.room:room-compiler:2.5.2"
 
 }
